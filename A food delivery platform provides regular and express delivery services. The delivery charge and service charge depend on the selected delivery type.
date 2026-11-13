@@ -1,0 +1,57 @@
+import java.util.Scanner;
+class Delivery
+{
+double orderAmount;
+Delivery(double orderAmount)
+{
+this.orderAmount = orderAmount;
+}
+public double calculateDeliveryCharge()
+{
+return orderAmount;
+}
+}
+class RegularDelivery extends Delivery
+{
+RegularDelivery(double orderAmount)
+{
+super(orderAmount);
+}
+@Override
+public double calculateDeliveryCharge()
+{
+return orderAmount + 40.0;
+}
+}
+class ExpressDelivery extends Delivery
+{
+ExpressDelivery(double orderAmount)
+{
+super(orderAmount);
+}
+@Override
+public double calculateDeliveryCharge()
+{
+return orderAmount + 80.0 + (orderAmount * 5 / 100);
+}
+}
+public class Main
+{
+public static void main(String[] args)
+{
+Scanner sc = new Scanner(System.in);
+int deliveryType = sc.nextInt();
+double orderAmount = sc.nextDouble();
+Delivery delivery;
+if (deliveryType == 1)
+{
+delivery = new RegularDelivery(orderAmount);
+}
+else
+{
+delivery = new ExpressDelivery(orderAmount);
+}
+System.out.printf("%.2f%n", delivery.calculateDeliveryCharge());
+sc.close();
+}
+}
